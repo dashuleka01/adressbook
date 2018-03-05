@@ -1,0 +1,5 @@
+<root>
+    <item name='groovy.util.GroovyTestCase'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>
