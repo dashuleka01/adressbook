@@ -21,7 +21,7 @@ class AdressBookTest {
         adressBook.addPerson(name, adress1);
         try {
             adressBook.addPerson(name, adress2);
-            fail("IllegalArgumentException");
+            fail("Illegal Argument");
         } catch (IllegalArgumentException e) {
         }
 
@@ -35,6 +35,7 @@ class AdressBookTest {
         AdressBook adressBook = new AdressBook();
         try {
             adressBook.deletePerson(name);
+            fail("Illegal Argument");
         } catch (IllegalArgumentException e) {
         }
     }
@@ -46,6 +47,7 @@ class AdressBookTest {
         AdressBook adressBook = new AdressBook();
         try {
             adressBook.changeAdress(name, adress1);
+            fail("Illegal Argument");
         } catch (IllegalArgumentException e) {
         }
 
@@ -60,6 +62,7 @@ class AdressBookTest {
         AdressBook adressBook = new AdressBook();
         try {
             adressBook.getAdress(name);
+            fail("Illegal Argument");
         } catch (IllegalArgumentException e) {
         }
     }

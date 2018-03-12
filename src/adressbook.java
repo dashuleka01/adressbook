@@ -15,7 +15,7 @@ public class AdressBook {
     public AdressBook addPerson(String person, Adress ad) {
         if (this.book.containsKey(person))
             throw new IllegalArgumentException();
-        this.book.put(person, ad);
+        this.book.putIfAbsent(person, ad);
         return this;
     }
 
