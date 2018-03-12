@@ -16,4 +16,8 @@ public class Adress {
     public int getHouse() {
         return this.house;
     }
+
+    public int getFlat() {
+        return this.flat;
+    }
 }

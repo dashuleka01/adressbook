@@ -14,48 +14,53 @@ class AdressBookTest {
 
     @Test
     void addPerson() {
-        assertFalse(new AdressBook().addPerson(name, adress2).book.get(name) == adress1);
-        assertTrue(new AdressBook().addPerson(name, adress1).book.get(name) == adress1);
+        assertEquals(adress1, new AdressBook().addPerson(name, adress1).book.get(name));
+        assertNotEquals(adress1, new AdressBook().addPerson(name, adress2).book.get(name));
+
+        AdressBook adressBook = new AdressBook();
+        adressBook.addPerson(name, adress1);
         try {
-            AdressBook adressBook = new AdressBook();
-            adressBook.addPerson(name, adress1);
             adressBook.addPerson(name, adress2);
+            fail("IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
         }
-        catch (IllegalArgumentException e){
-        }
+
+        assertEquals(adress1, adressBook.book.get(name));
     }
 
     @Test
     void deletePerson() {
-        assertFalse(new AdressBook().addPerson(name, adress1).deletePerson(name).book.containsKey(name));
+        assertNotEquals(adress1, new AdressBook().addPerson(name, adress1).deletePerson(name).book.get(name));
+
+        AdressBook adressBook = new AdressBook();
         try {
-            AdressBook adressBook = new AdressBook();
             adressBook.deletePerson(name);
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
         }
     }
 
     @Test
     void changeAdress() {
-        assertTrue(new AdressBook().addPerson(name, adress1).changeAdress(name, adress2).book.get(name) == adress2);
+        assertEquals(adress2, new AdressBook().addPerson(name, adress1).changeAdress(name, adress2).book.get(name));
+
+        AdressBook adressBook = new AdressBook();
         try {
-            AdressBook adressBook = new AdressBook();
             adressBook.changeAdress(name, adress1);
+        } catch (IllegalArgumentException e) {
         }
-        catch (IllegalArgumentException e){
-        }
+
+        assertNotEquals(adress1, adressBook.book.get(name));
     }
 
     @Test
     void getAdress() {
         assertEquals(adress1, new AdressBook().addPerson(name, adress1).getAdress(name));
         assertNotEquals(adress1, new AdressBook().addPerson(name, adress2).getAdress(name));
+
+        AdressBook adressBook = new AdressBook();
         try {
-            AdressBook adressBook = new AdressBook();
             adressBook.getAdress(name);
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
         }
     }
 
