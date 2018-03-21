@@ -14,8 +14,7 @@ class AdressBookTest {
 
     @Test
     void addPerson() {
-        assertEquals(adress1, new AdressBook().addPerson(name, adress1).book.get(name));
-        assertNotEquals(adress1, new AdressBook().addPerson(name, adress2).book.get(name));
+        assertEquals(adress1, new AdressBook().addPerson(name, adress1).getAdress(name));
 
         AdressBook adressBook = new AdressBook();
         adressBook.addPerson(name, adress1);
@@ -24,14 +23,11 @@ class AdressBookTest {
             fail("Illegal Argument");
         } catch (IllegalArgumentException e) {
         }
-
-        assertEquals(adress1, adressBook.book.get(name));
+        assertEquals(adress1, adressBook.getAdress(name));
     }
 
     @Test
     void deletePerson() {
-        assertNotEquals(adress1, new AdressBook().addPerson(name, adress1).deletePerson(name).book.get(name));
-
         AdressBook adressBook = new AdressBook();
         try {
             adressBook.deletePerson(name);
@@ -42,7 +38,7 @@ class AdressBookTest {
 
     @Test
     void changeAdress() {
-        assertEquals(adress2, new AdressBook().addPerson(name, adress1).changeAdress(name, adress2).book.get(name));
+        assertEquals(adress2, new AdressBook().addPerson(name, adress1).changeAdress(name, adress2).getAdress(name));
 
         AdressBook adressBook = new AdressBook();
         try {
@@ -50,14 +46,11 @@ class AdressBookTest {
             fail("Illegal Argument");
         } catch (IllegalArgumentException e) {
         }
-
-        assertNotEquals(adress1, adressBook.book.get(name));
     }
 
     @Test
     void getAdress() {
         assertEquals(adress1, new AdressBook().addPerson(name, adress1).getAdress(name));
-        assertNotEquals(adress1, new AdressBook().addPerson(name, adress2).getAdress(name));
 
         AdressBook adressBook = new AdressBook();
         try {
@@ -76,7 +69,6 @@ class AdressBookTest {
         myBook.addPerson("Natasha", adress4);
 
         assertEquals(new HashSet<>(Arrays.asList("Natasha", "Masha", "Sasha")), myBook.peopleByStreet("Nevskiy"));
-        assertNotEquals(new HashSet<>(Arrays.asList("Dasha", "Masha", "Sasha")), myBook.peopleByStreet("Nevskiy"));
         assertEquals(new HashSet<>(), myBook.peopleByStreet("Street"));
     }
 
@@ -90,7 +82,6 @@ class AdressBookTest {
 
         assertEquals(new HashSet<>(Arrays.asList("Natasha", "Masha")), myBook.peopleByHouse("Nevskiy", 26));
         assertEquals(new HashSet<>(Arrays.asList("Sasha")), myBook.peopleByHouse("Nevskiy", 54));
-        assertNotEquals(new HashSet<>(Arrays.asList("Dasha")), myBook.peopleByHouse("Nevskiy", 54));
         assertEquals(new HashSet<>(), myBook.peopleByHouse("Nevskiy", 27));
         assertEquals(new HashSet<>(), myBook.peopleByHouse("Street", 26));
     }
