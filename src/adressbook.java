@@ -13,7 +13,7 @@ public class AdressBook {
 
     //добавление пары человек-адрес
     public AdressBook addPerson(String person, Adress ad) {
-        if (this.book.putIfAbsent(person,ad) != null)
+        if (this.book.putIfAbsent(person, ad) != null)
             throw new IllegalArgumentException();
         return this;
     }
@@ -34,11 +34,9 @@ public class AdressBook {
 
     //получение адреса
     public Adress getAdress(String person) {
-        if (this.book.get(person) == null) {
-            throw new IllegalArgumentException();
-        }
-        else
-            return this.book.get(person);
+        Adress res = this.book.get(person);
+        if (res == null) throw new IllegalArgumentException();
+        else return res;
     }
 
     //получение списка людей по улице
